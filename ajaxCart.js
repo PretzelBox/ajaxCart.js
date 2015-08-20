@@ -145,7 +145,5 @@
 })(jQuery);
 
 $(function() {
-  $('body').ajaxCart({
-    cartItemLayout: '<div class="SmallCartItem pad-t-15 pad-b-15 pad-l-10 m-b-5 m-t-5 pad-r-10 media" data-row="$$CARTROWID$$"><div class="pull-left m-r-15"><img src="/resize$$IMAGEURL$$?lr=t&bw=50"></div><div class="pull-right m-t-15"><a class="badge clear-item-link" href="#">&times;</a></div><div class="media-body"><div>$$ITEMLINK$$</div><div>$$QUANTITY$$ &times; $$PRICE$$</div></div></div>'
-  });
+  $('body').ajaxCart();
 });
