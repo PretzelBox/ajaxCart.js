@@ -13,7 +13,7 @@
     }
     
     // Make sure AC Client API is loaded
-    if(AC.init === undefined){
+    if(typeof AC.init === "undefined"){
       $.getScript('/store/inc/clientapi/ac-client-api.min.js', function(){
         AC.init({storeDomain : AC.sslDomain});
       });
@@ -103,7 +103,7 @@
     
     // Quick money formatting function
     var formatMoney = function(n) {
-      return n.toFixed(2).replace(/./g, function(c, i, a) { return i && c !=== "." && ((a.length - i) % 3 === 0) ? ',' + c : c; });
+      return n.toFixed(2).replace(/./g, function(c, i, a) { return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c; });
     };
     
     $(this).on('click', opt.addToCartSelector, function(e) {
@@ -119,7 +119,7 @@
       }
       
       AC.cart.add(product, function(r) {
-        if (r.status.toLowerCase() != 'ok') {
+        if (r.status.toLowerCase() !== 'ok') {
           alert(r.messages.join('\n'));
         }
         
