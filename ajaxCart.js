@@ -13,7 +13,7 @@
     }
     
     // Make sure AC Client API is loaded
-    if(AC.init == undefined){
+    if(typeof AC.init === 'undefined'){
       $.getScript('/store/inc/clientapi/ac-client-api.min.js', function(){
         AC.init({storeDomain : AC.sslDomain});
       });
@@ -37,16 +37,16 @@
       var item = {};
       for (i in _item) { item[i.toUpperCase()] = _item[i]; }
       return template.replace(/\$\$([^\W\$]+)\$\$/gi, function(m, a) {
-        if (a == 'ITEMLINK') {
+        if (a === 'ITEMLINK') {
           return '<a class="SmallCartItemLink" href="/store/productdetails.aspx?itemID=' + item['ITEMID'] + '">' + item['ITEMNAME'] + '</a>';
-        } else if (a == 'ITEMURL') {
+        } else if (a === 'ITEMURL') {
           return '/store/productdetails.aspx?itemID=' + item['ITEMID'];
-        } else if (typeof item[a] == 'string' || typeof item[a] == 'number') {
-          if (a == 'IMAGEURL' && item[a] == '') {
+        } else if (typeof item[a] === 'string' || typeof item[a] === 'number') {
+          if (a === 'IMAGEURL' && item[a] === '') {
             return '/store/images/default-product-image.jpg';
           }
           
-          if (a == 'PRICE') {
+          if (a === 'PRICE') {
             return formatMoney(item[a]);
           }
           
@@ -81,7 +81,7 @@
         
         if (opt.cart.totalItemCount > 0) {
           $(opt.dropdownCartSelector).find('.no-items').hide();
-          if ($.trim($(opt.dropdownCartSelector).find('.some-items').text()) == '') {
+          if ($.trim($(opt.dropdownCartSelector).find('.some-items').text()) === '') {
             $.ajax({
               url: window.location.pathname,
               type: 'get',
@@ -103,7 +103,7 @@
     
     // Quick money formatting function
     var formatMoney = function(n) {
-      return n.toFixed(2).replace(/./g, function(c, i, a) { return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c; });
+      return n.toFixed(2).replace(/./g, function(c, i, a) { return i && c !== '.' && ((a.length - i) % 3 === 0) ? ',' + c : c; });
     };
     
     $(this).on('click', opt.addToCartSelector, function(e) {
@@ -119,7 +119,7 @@
       }
       
       AC.cart.add(product, function(r) {
-        if (r.status.toLowerCase() != 'ok') {
+        if (r.status.toLowerCase() !== 'ok') {
           alert(r.messages.join('\n'));
         }
         
