@@ -1,4 +1,4 @@
-(function($) {
+(function(window, $) {
   $.fn.ajaxCart = function(_opt) {
     var _opt = _opt || {};
     
@@ -142,7 +142,7 @@
     
     return $(this);
   };
-})(jQuery);
+})(window, jQuery);
 
 $(function() {
   $('body').ajaxCart();
